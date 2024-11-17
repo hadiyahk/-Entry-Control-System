@@ -1,0 +1,78 @@
+#include "C:\\RealTime\\cst8244_assign1\\des.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/neutrino.h>
+#include <unistd.h>  // Include for getpid
+#include <errno.h>
+
+
+
+// Define the message structure
+struct message {
+    char event[MAX_INPUT_LENGTH];
+    int person_id;
+    int weight;
+};
+
+// Function prototype for print_status
+void print_status(const struct message *msg);
+
+int main() {
+    int chid, rcvid;
+    struct message msg;
+
+    // Create a channel for message passing
+    chid = ChannelCreate(0);
+    if (chid == -1) {
+        perror("[Display] ChannelCreate");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("[Display] The display is running as process_id %d.\n", getpid());
+
+    // Display loop to handle incoming messages
+    while (1) {
+        // Receive message from controller
+        rcvid = MsgReceive(chid, &msg, sizeof(msg), NULL);
+        if (rcvid == -1) {
+            perror("[Display] MsgReceive");
+            // Handle error or continue
+            continue;
+        }
+
+        // Print the received data from controller
+        printf("[Display] Received data from controller:\n");
+        printf("[Display] Event: %s\n", msg.event);
+        printf("[Display] Person ID: %d\n", msg.person_id);
+        printf("[Display] Weight: %d\n", msg.weight);
+
+        // Print the status update using the received data
+        print_status(&msg);
+
+        // Reply to the sender (acknowledge receipt)
+        if (MsgReply(rcvid, EOK, NULL, 0) == -1) {
+            perror("[Display] MsgReply");
+            // Handle error if needed
+        }
+    }
+
+    // Destroy the channel when done
+    ChannelDestroy(chid);
+
+    return EXIT_SUCCESS;
+}
+
+// Function definition for print_status
+void print_status(const struct message *msg) {
+    // Print status update received from controller
+    printf("[Display] Status Update:\n");
+    printf("[Display] Event: %s\n", msg->event);
+
+    // Example condition for printing additional information
+    if (strcmp(msg->event, "ls") == 0 || strcmp(msg->event, "rs") == 0) {
+        printf("[Display] Person ID: %d\n", msg->person_id);
+    } else if (strcmp(msg->event, "ws") == 0) {
+        printf("[Display] Weight: %d\n", msg->weight);
+    }
+}

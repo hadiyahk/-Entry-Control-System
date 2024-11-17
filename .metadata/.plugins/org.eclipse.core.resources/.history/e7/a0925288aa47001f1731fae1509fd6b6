@@ -1,0 +1,296 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/neutrino.h>
+#include <errno.h>
+#include <unistd.h> // For getpid
+#include "C:\\RealTime\\cst8244_assign1\\des.h"
+#include <sys/dispatch.h>
+
+#define MAX_INPUT_LENGTH 20
+
+// Function prototypes for state handlers
+State start_state_handler(const char *event, Message *outMsg);
+State ls_state_handler(const char *event, Message *outMsg);
+State rs_state_handler(const char *event, Message *outMsg);
+State left_unlock_state_handler(const char *event, Message *outMsg);
+State right_unlock_state_handler(const char *event, Message *outMsg);
+State left_open_state_handler(const char *event, Message *outMsg);
+State right_open_state_handler(const char *event, Message *outMsg);
+State weight_state_handler(const char *event, Message *outMsg);
+State left_close_state_handler(const char *event, Message *outMsg);
+State right_close_state_handler(const char *event, Message *outMsg);
+State guard_left_lock_state_handler(const char *event, Message *outMsg);
+State guard_right_lock_state_handler(const char *event, Message *outMsg);
+
+// Array of function pointers to state handlers
+State (*state_handlers[NUM_STATES])(const char *event, Message *outMessage) = {
+	start_state_handler,
+	ls_state_handler,
+	rs_state_handler,
+	left_unlock_state_handler,
+	left_open_state_handler,
+	weight_state_handler,
+	left_close_state_handler,
+	guard_left_lock_state_handler,
+	right_unlock_state_handler,
+	right_open_state_handler,
+	right_close_state_handler,
+	guard_right_lock_state_handler,
+	NULL
+};
+
+// Function to receive events from des_inputs
+void receive_event_from_des_inputs(Message *message, int coid) {
+	int rcvid;
+	// Wait for a message from inputs
+	rcvid = MsgReceive(coid, message, sizeof(*message), NULL);
+	if (rcvid == -1) {
+		perror("MsgReceive");
+		return;
+	}
+
+	// Process the received message
+	printf("[Controller] Received event: %s, person_id: %d, weight: %d\n",
+			message->event, message->person_id, message->weight);
+
+	// Reply to the message sender
+	MsgReply(rcvid, EOK, NULL, 0);
+}
+
+
+//main function
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <display_name>\n", argv[0]);
+        return EXIT_FAILURE;
+    }
+
+    // Open a connection to the display server using its name
+    int coid = name_open(argv[1], 0);
+    if (coid == -1) {
+        perror("name_open");
+        return EXIT_FAILURE;
+    }
+
+    // Register a name in the namespace and create a channel to receive messages
+    name_attach_t *attach = name_attach(NULL, "controller", 0);
+    if (attach == NULL) {
+        perror("name_attach");
+        name_close(coid);
+        return EXIT_FAILURE;
+    }
+
+    printf("Controller PID: %d\n", getpid());
+    printf("Channel ID: %d\n", attach->chid);
+
+    // Main loop to execute state machine
+    State current_state = START_STATE;
+    Message message;
+    int keep_running = 1;
+
+    while (keep_running) {
+        // Receive event from des_inputs
+        receive_event_from_des_inputs(&message, attach->chid);
+
+        // Execute current state handler
+        State next_state = state_handlers[current_state](message.event, &message);
+
+        // Update display with current state information
+        if (MsgSend(coid, &message, sizeof(message), NULL, 0) == -1) {
+            perror("MsgSend");
+            break; // Exit loop on error
+        }
+
+        // Print the message associated with the current state
+        printf("[Controller] State: %d\n", current_state);
+
+        // Transition to the next state
+        current_state = next_state;
+
+        // If exit event is received, break the loop
+        if (strcmp(message.event, "exit") == 0) {
+            printf("[Controller] Exit event received. Terminating.\n");
+            break;
+        }
+    }
+
+    // Clean up: detach from the namespace and close the connection to the display
+    if (name_detach(attach, 0) == -1) {
+        perror("name_detach");
+    }
+
+    if (name_close(coid) == -1) {
+        perror("name_close");
+    }
+
+    return EXIT_SUCCESS;
+}
+
+State start_state_handler(const char *event, Message *outMsg) {
+	printf("START: %s\n", event);
+	if (strcmp(event, "ls") == 0) {
+		printf("[Controller] Entering START_STATE handler for 'ls' event\n");
+
+		printf("%s\n", outMessage[PERSON_LEFT_SCAN]);
+		return LS_STATE;
+	} else if (strcmp(event, "rs") == 0) {
+		printf(
+				"[Controller] Entering START_STATE handler for 'rs Person ID' event\n");
+
+		printf("%s\n", outMessage[PERSON_RIGHT_SCAN]);
+		return RS_STATE;
+	} else {
+		printf("[Controller] Illegal event received in START_STATE: %s\n",
+				event);
+		return START_STATE;
+	}
+}
+
+State ls_state_handler(const char *event, Message *outMsg) {
+	printf("LS: %s\n", event);
+	if (strcmp(event, "glu") == 0) {
+		printf("[Controller] Entering LS_STATE handler for 'glu' event\n");
+		printf("%s\n", outMessage[GUARD_LEFT_UNLOCK]);
+		return LEFT_UNLOCK_STATE;
+	} else if (strcmp(event, "lo") == 0) {
+		printf("[Controller] Entering LS_STATE handler for 'lo' event\n");
+		printf("%s\n", outMessage[LEFT_DOOR_OPEN]);
+
+		return LEFT_OPEN_STATE;
+	} else {
+		printf("[Controller] Illegal event received in LS_STATE: %s\n", event);
+		return LS_STATE;
+	}
+}
+
+State rs_state_handler(const char *event, Message *outMsg) {
+	printf("RS: %s\n", event);
+	if (strcmp(event, "gru") == 0) {
+		printf("%s\n", outMessage[GUARD_RIGHT_UNLOCK]);
+
+		return RIGHT_UNLOCK_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return RS_STATE;
+	}
+}
+
+State left_unlock_state_handler(const char *event, Message *outMsg) {
+	printf("GLU: %s\n", event);
+	if (strcmp(event, "lo") == 0) {
+
+		printf("%s\n", outMessage[LEFT_DOOR_OPEN]);
+		return LEFT_OPEN_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return LEFT_UNLOCK_STATE;
+	}
+}
+
+State right_unlock_state_handler(const char *event, Message *outMsg) {
+	printf("GRU: %s\n", event);
+	if (strcmp(event, "ro") == 0) {
+		printf("%s\n", outMessage[RIGHT_DOOR_OPEN]);
+		return RIGHT_OPEN_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return RIGHT_UNLOCK_STATE;
+	}
+}
+
+State left_open_state_handler(const char *event, Message *outMsg) {
+	printf("LO: %s\n", event);
+	if (strcmp(event, "ws") == 0) {
+
+		return WEIGHT_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return LEFT_OPEN_STATE;
+	}
+}
+
+State right_open_state_handler(const char *event, Message *outMsg) {
+
+	printf("RO: %s\n", event);
+
+	if (strcmp(event, "ws") == 0) {
+
+
+		return WEIGHT_STATE;
+
+	} else if (strcmp(event, "rc") == 0) {
+		printf("%s\n", outMessage[RIGHT_DOOR_CLOSE]);
+
+		return RIGHT_CLOSE_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return RIGHT_OPEN_STATE;
+	}
+}
+
+State weight_state_handler(const char *event, Message *outMsg) {
+	printf("WS: %s\n", event);
+	if (strcmp(event, "lc") == 0) {
+		printf("%s\n", outMessage[LEFT_DOOR_CLOSE]);
+
+		return LEFT_CLOSE_STATE;
+	} else if (strcmp(event, "rc") == 0) {
+		printf("%s\n", outMessage[RIGHT_DOOR_CLOSE]);
+
+		return RIGHT_CLOSE_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return WEIGHT_STATE;
+	}
+}
+
+State left_close_state_handler(const char *event, Message *outMsg) {
+	printf("LC: %s\n", event);
+	if (strcmp(event, "gll") == 0) {
+		printf("%s\n", outMessage[GUARD_LEFT_LOCK]);
+
+		return GUARD_LEFT_LOCK_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return LEFT_CLOSE_STATE;
+	}
+}
+
+State right_close_state_handler(const char *event, Message *outMsg) {
+	printf("RC: %s\n", event);
+	if (strcmp(event, "grl") == 0) {
+		printf("%s\n", outMessage[GUARD_RIGHT_LOCK]);
+
+		return GUARD_RIGHT_LOCK_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return RIGHT_CLOSE_STATE;
+	}
+}
+
+State guard_left_lock_state_handler(const char *event, Message *outMsg) {
+	printf("GLL: %s\n", event);
+	if (strcmp(event, "ls") == 0) {
+		printf("%s\n", outMessage[START_STATE]);
+
+		return START_STATE;
+	}else if(strcmp(event, "gru") == 0){
+		return RIGHT_UNLOCK_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return GUARD_LEFT_LOCK_STATE;
+	}
+}
+
+State guard_right_lock_state_handler(const char *event, Message *outMsg) {
+	printf("GRL: %s\n", event);
+	if (strcmp(event, "ls") == 0) {
+		printf("%s\n", outMessage[START_STATE]);
+
+		return START_STATE;
+	} else {
+		printf("[Controller] Illegal event received: %s\n", event);
+		return GUARD_RIGHT_LOCK_STATE;
+	}
+}

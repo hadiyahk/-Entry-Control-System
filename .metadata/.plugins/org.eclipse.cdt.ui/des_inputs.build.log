@@ -1,0 +1,16 @@
+23:54:55 **** Build of configuration x86_64-debug for project des_inputs ****
+make -j8 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/des_inputs.d,-MT,build/x86_64-debug/src/des_inputs.o -o build/x86_64-debug/src/des_inputs.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/des_inputs.c
+src/des_inputs.c: In function 'main':
+src/des_inputs.c:31:17: warning: implicit declaration of function 'name_open'; did you mean 'freopen'? [-Wimplicit-function-declaration]
+      int coid = name_open("controller", 0);
+                 ^~~~~~~~~
+                 freopen
+src/des_inputs.c:106:13: warning: implicit declaration of function 'name_close'; did you mean 'pclose'? [-Wimplicit-function-declaration]
+         if (name_close(coid) == -1) {
+             ^~~~~~~~~~
+             pclose
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/des_inputs   build/x86_64-debug/src/des_inputs.o  
+
+23:54:55 Build Finished. 0 errors, 2 warnings. (took 243ms)
+

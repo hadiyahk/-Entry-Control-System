@@ -1,0 +1,252 @@
+!SESSION 2024-07-14 11:14:02.233 -----------------------------------------------
+eclipse.buildId=7.1.2
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-14 11:14:14.021
+!MESSAGE Enablement expression is missing for config provider for com.qnx.tools.ide.qde.core.recursiveMkProject
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-14 11:14:14.034
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-14 11:14:14.042
+!MESSAGE Enablement expression is missing for config provider for com.qnx.tools.ide.qde.debug.core.descriptorType.default
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-14 11:14:14.042
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
+
+!ENTRY com.qnx.tools.ide.capabilities.ui 4 0 2024-07-14 11:14:14.052
+!MESSAGE activityProfiles.activityRequirementBinding: Invalid activityId com.qnx.tools.ide.capabilities.ui.activity.qnxSystemDeveloper
+
+!ENTRY com.qnx.tools.ide.capabilities.ui 4 0 2024-07-14 11:14:14.052
+!MESSAGE activityProfiles.activityRequirementBinding: Invalid requiredActivityId com.qnx.tools.ide.capabilities.ui.activity.qnxDeveloper
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-14 11:14:14.285
+!MESSAGE License heartbeats are enabled (automatically)
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-14 11:14:14.539
+!MESSAGE Successfully created a momentics heartbeat client
+
+!ENTRY com.qnx.tools.ide.core 2 0 2024-07-14 11:14:14.541
+!MESSAGE Using previous doc directory C:\Users\Hadiy\qnx710\target\qnx7\usr\help
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-14 11:14:14.549
+!MESSAGE Heartbeat Job constructed with Invocation ON_SERVER_NEXT_SEND (scheduled to run at 2024-07-16T17:45:59Z)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-07-14 11:14:46.514
+!MESSAGE Indexed 'des_display' (1 sources, 17 headers) in 0.596 sec: 1,208 declarations; 1,107 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-07-14 11:15:08.474
+!MESSAGE Indexed 'des_controller' (1 sources, 17 headers) in 0.16 sec: 1,208 declarations; 1,107 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-07-14 11:15:29.724
+!MESSAGE Indexed 'des_inputs' (1 sources, 17 headers) in 0.121 sec: 1,208 declarations; 1,107 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-14 11:16:14.877
+!MESSAGE Heartbeat request not sent. Time is not right.
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-14 11:16:14.882
+!MESSAGE License heartbeats are enabled (automatically)
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-14 11:16:14.886
+!MESSAGE Heartbeat Job constructed with Invocation ON_SERVER_NEXT_SEND (scheduled to run at 2024-07-16T17:45:59Z)
+
+!ENTRY com.qnx.tools.ide.SystemProfiler.core 1 0 2024-07-14 15:23:50.334
+!MESSAGE Filter not found C:\RealTime\cst8244_assign1\.metadata\.plugins\com.qnx.tools.ide.SystemProfiler.core\filters.xml (The system cannot find the file specified)
+
+!ENTRY org.eclipse.ui 4 4 2024-07-14 15:27:24.297
+!MESSAGE Conflicting handlers for AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction: {ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction in com.qnx.tools.ide.momentics)} vs {ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction in org.eclipse.platform)} in: PageSite
+!STACK 0
+java.lang.IllegalStateException: Conflicting handlers: {[ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction in com.qnx.tools.ide.momentics),  for 'AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction',  in TrimmedWindowImpl (IDEWindow) Context, activeWhen=AndExpression [children=[ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@6585df70), WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@6585df70)]], active=true, sourcePriority=16448, participating=true]} vs {[ActionDelegateHandlerProxy(null,org.eclipse.ui.cheatsheets.CheatSheetExtensionFactory:helpMenuAction in org.eclipse.platform),  for 'AUTOGEN:::org.eclipse.ui.cheatsheets.actionSet/org.eclipse.ui.cheatsheets.actions.CheatSheetHelpMenuAction',  in TrimmedWindowImpl (IDEWindow) Context, activeWhen=AndExpression [children=[ActionSetExpression(org.eclipse.ui.cheatsheets.actionSet,org.eclipse.ui.internal.WorkbenchWindow@6585df70), WorkbenchWindowExpression(org.eclipse.ui.internal.WorkbenchWindow@6585df70)]], active=true, sourcePriority=16448, participating=true]} in: PageSite
+	at org.eclipse.ui.internal.handlers.LegacyHandlerService$HandlerSelectionFunction.compute(LegacyHandlerService.java:145)
+	at org.eclipse.e4.core.internal.contexts.ValueComputation.get(ValueComputation.java:70)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:263)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:274)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:274)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.internalGet(EclipseContext.java:274)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.get(EclipseContext.java:228)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.lookUpHandler(HandlerServiceImpl.java:103)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.setEnabled(HandlerServiceHandler.java:75)
+	at org.eclipse.core.commands.Command.setEnabled(Command.java:856)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.canExecute(HandlerServiceImpl.java:179)
+	at org.eclipse.ui.internal.quickaccess.providers.CommandProvider.retrieveCommand(CommandProvider.java:102)
+	at org.eclipse.ui.internal.quickaccess.providers.CommandProvider.getElements(CommandProvider.java:85)
+	at org.eclipse.ui.internal.quickaccess.QuickAccessProvider.getElementsSorted(QuickAccessProvider.java:83)
+	at org.eclipse.ui.internal.quickaccess.QuickAccessContents$3.runInUIThread(QuickAccessContents.java:397)
+	at org.eclipse.ui.progress.UIJob.lambda$0(UIJob.java:95)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4035)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3635)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1154)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1045)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:551)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:156)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.cdt.ui 4 0 2024-07-14 18:43:47.513
+!MESSAGE Error in CDT UI during reconcile
+!STACK 1
+C Model Exception: C Model Status [Element des_display.c does not exist.]
+	at org.eclipse.cdt.internal.core.model.CElement.newNotPresentException(CElement.java:485)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:583)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:65)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:346)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:613)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:641)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:365)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:79)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2024-07-14 18:43:47.518
+!MESSAGE Element des_display.c does not exist.
+
+!ENTRY org.eclipse.egit.ui 4 0 2024-07-15 00:01:27.639
+!MESSAGE file:///C:\RealTime\cst8244_assign1: not found.
+!STACK 0
+org.eclipse.jgit.api.errors.TransportException: file:///C:\RealTime\cst8244_assign1: not found.
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:189)
+	at org.eclipse.jgit.api.LsRemoteCommand.call(LsRemoteCommand.java:128)
+	at org.eclipse.egit.core.op.ListRemoteOperation.run(ListRemoteOperation.java:116)
+	at org.eclipse.egit.ui.internal.components.AsynchronousListOperation.run(AsynchronousListOperation.java:76)
+	at org.eclipse.egit.ui.internal.dialogs.CancelableFuture$1.run(CancelableFuture.java:280)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.NoRemoteRepositoryException: file:///C:\RealTime\cst8244_assign1: not found.
+	at org.eclipse.jgit.transport.TransportLocal$1.open(TransportLocal.java:100)
+	at org.eclipse.jgit.transport.TransportBundleFile$1.open(TransportBundleFile.java:74)
+	at org.eclipse.jgit.transport.Transport.open(Transport.java:521)
+	at org.eclipse.jgit.transport.Transport.open(Transport.java:274)
+	at org.eclipse.jgit.transport.Transport.open(Transport.java:244)
+	at org.eclipse.jgit.api.LsRemoteCommand.execute(LsRemoteCommand.java:155)
+	... 5 more
+!SESSION 2024-07-18 18:02:01.348 -----------------------------------------------
+eclipse.buildId=7.1.2
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-07-18 18:02:14.695
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.qnx.tools.ide.core 2 0 2024-07-18 18:02:50.198
+!MESSAGE Using previous doc directory C:\Users\Hadiy\qnx710\target\qnx7\usr\help
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-18 18:02:56.312
+!MESSAGE Enablement expression is missing for config provider for com.qnx.tools.ide.qde.core.recursiveMkProject
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-18 18:02:56.318
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.qnx.tools.ide.capabilities.ui 4 0 2024-07-18 18:02:56.318
+!MESSAGE activityProfiles.activityRequirementBinding: Invalid activityId com.qnx.tools.ide.capabilities.ui.activity.qnxSystemDeveloper
+
+!ENTRY com.qnx.tools.ide.capabilities.ui 4 0 2024-07-18 18:02:56.318
+!MESSAGE activityProfiles.activityRequirementBinding: Invalid requiredActivityId com.qnx.tools.ide.capabilities.ui.activity.qnxDeveloper
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-18 18:02:56.330
+!MESSAGE Enablement expression is missing for config provider for com.qnx.tools.ide.qde.debug.core.descriptorType.default
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-18 18:02:56.330
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-18 18:02:56.672
+!MESSAGE License heartbeats are enabled (automatically)
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-18 18:02:57.671
+!MESSAGE Successfully created a momentics heartbeat client
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-18 18:02:57.688
+!MESSAGE Heartbeat Job constructed with Invocation ON_SERVER_NEXT_SEND (scheduled to run at 2024-07-16T17:45:59Z)
+
+!ENTRY com.qnx.swupdate.common.license.HeartbeatManager 1 0 2024-07-18 18:04:59.263
+!MESSAGE Sending heartbeat request to https://www.qnx.com/api/1/heartbeat/poller.php
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-18 18:05:00.879
+!MESSAGE Successful response: {"transaction":"DFsrU-2z40f-Jw2B3-flVKs-Oi9E7-Z1le3","next_send":"2024-08-17T18:05:14Z","licenses":{"9164588":{"activation_status":"not_activated","status_code":5,"status_message":"Invalid Serial Number","license_key":"1Y1P-TTBM-V25V-FAK5-NVPU"}},"uid_a":"4RIwjCzTHA9q6b2arn5c","uid_b":"01klIhQkb5qjgL5xuMRT","uid_c":"DQLx63WKSg7PGqSocNvM"}
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 4 0 2024-07-18 18:05:01.145
+!MESSAGE FAILED LICENSES: {com.qnx.swupdate.common.license.HeartbeatResponse$ServerLicenseState(serialNumber=9164588, key=1Y1P-TTBM-V25V-FAK5-NVPU, activationState=NOT_ACTIVATED, statusCode=INVALID_SERIAL_NUMBER, statusMessage="Invalid Serial Number")=Optional[Status OK: com.qnx.tools.license code=0 License OK]}
+
+!ENTRY com.qnx.tools.ide.heartbeat.licenseHandler.LicenseHandler 1 0 2024-07-18 18:05:01.148
+!MESSAGE Handling failed heartbeat licenses: {com.qnx.swupdate.common.license.HeartbeatResponse$ServerLicenseState(serialNumber=9164588, key=1Y1P-TTBM-V25V-FAK5-NVPU, activationState=NOT_ACTIVATED, statusCode=INVALID_SERIAL_NUMBER, statusMessage="Invalid Serial Number")=Optional[Status OK: com.qnx.tools.license code=0 License OK]}
+
+!ENTRY com.qnx.tools.ide.heartbeat.licenseHandler.LicenseHandler 1 0 2024-07-18 18:05:01.153
+!MESSAGE LC5: License Compliance Issue (license key 1Y1P-TTBM-V25V-FAK5-NVPU): Invalid Serial Number
+Please visit https://www.myqnx.com for more info.
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-18 18:05:01.153
+!MESSAGE License heartbeats are enabled (automatically)
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-18 18:05:01.163
+!MESSAGE Heartbeat Job constructed with Invocation ON_SERVER_NEXT_SEND (scheduled to run at 2024-08-17T18:05:14Z)
+!SESSION 2024-07-25 17:34:30.460 -----------------------------------------------
+eclipse.buildId=7.1.2
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-07-25 17:34:37.367
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.qnx.tools.ide.core 2 0 2024-07-25 17:34:42.892
+!MESSAGE Using previous doc directory C:\Users\Hadiy\qnx710\target\qnx7\usr\help
+
+!ENTRY com.qnx.tools.ide.capabilities.ui 4 0 2024-07-25 17:34:45.208
+!MESSAGE activityProfiles.activityRequirementBinding: Invalid activityId com.qnx.tools.ide.capabilities.ui.activity.qnxSystemDeveloper
+
+!ENTRY com.qnx.tools.ide.capabilities.ui 4 0 2024-07-25 17:34:45.208
+!MESSAGE activityProfiles.activityRequirementBinding: Invalid requiredActivityId com.qnx.tools.ide.capabilities.ui.activity.qnxDeveloper
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-25 17:34:45.210
+!MESSAGE Enablement expression is missing for config provider for com.qnx.tools.ide.qde.core.recursiveMkProject
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-25 17:34:45.211
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-25 17:34:45.212
+!MESSAGE Enablement expression is missing for config provider for com.qnx.tools.ide.qde.debug.core.descriptorType.default
+
+!ENTRY org.eclipse.launchbar.core 2 0 2024-07-25 17:34:45.212
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-25 17:34:45.315
+!MESSAGE License heartbeats are enabled (automatically)
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-25 17:34:45.667
+!MESSAGE Successfully created a momentics heartbeat client
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-25 17:34:45.691
+!MESSAGE Heartbeat Job constructed with Invocation ON_SERVER_NEXT_SEND (scheduled to run at 2024-08-17T18:05:14Z)
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-25 17:36:45.990
+!MESSAGE Heartbeat request not sent. Time is not right.
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.MomenticsHeartbeatClient 1 0 2024-07-25 17:36:45.996
+!MESSAGE License heartbeats are enabled (automatically)
+
+!ENTRY com.qnx.tools.ide.heartbeat.core.HeartbeatJob 1 0 2024-07-25 17:36:46.000
+!MESSAGE Heartbeat Job constructed with Invocation ON_SERVER_NEXT_SEND (scheduled to run at 2024-08-17T18:05:14Z)

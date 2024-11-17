@@ -1,0 +1,75 @@
+#include "C:\\RealTime\\cst8244_assign1\\des.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/neutrino.h>
+#include <unistd.h>  // Include for getpid
+#include <errno.h>
+#include <sys/dispatch.h>
+
+// Define the message structure
+struct message {
+	char event[MAX_INPUT_LENGTH];
+	int person_id;
+	int weight;
+};
+
+// Function prototype for print_status
+void print_status(const struct message *msg);
+
+int main() {
+	 name_attach_t *attach;
+	int chid, rcvid;
+	struct message msg;
+
+//changed to use name_attach
+	attach = name_attach(NULL, "display", 0);
+	    if (attach == NULL) {
+	        perror("[Display] name_attach");
+	        exit(EXIT_FAILURE);
+	    }
+
+	printf("[Display] The display is running as process_id %d.\n", getpid());
+
+	// Display loop to handle incoming messages
+	while (1) {
+		 // Receive message from controller
+		  rcvid = MsgReceive(attach->chid, &msg, sizeof(msg), NULL);
+		if (rcvid == -1) {
+			perror("[Display] MsgReceive");
+			// Handle error or continue
+			continue;
+		}
+
+		// Print the received data from controller
+		printf("[Display] Received data from controller:\n");
+		printf("[Display] Event: %s\n", msg.event);
+		printf("[Display] Person ID: %d\n", msg.person_id);
+		printf("[Display] Weight: %d\n", msg.weight);
+
+		// Print the status update using the received data
+		//print_status(&msg);
+
+		// Reply to the sender (acknowledge receipt)
+		if (MsgReply(rcvid, EOK, NULL, 0) == -1) {
+			perror("[Display] MsgReply");
+			// Handle error if needed
+		}
+
+		// If exit event is received, break the loop
+		if (strcmp(msg.event, "exit") == 0) {
+			printf("[Display] Exit event received. Terminating.\n");
+			break;
+		}
+	}
+
+
+	// Unregister the name and destroy the channel when done
+	    if (name_detach(attach, 0) == -1) {
+	        perror("[Display] name_detach");
+	        exit(EXIT_FAILURE);
+	    }
+
+	return EXIT_SUCCESS;
+}
+

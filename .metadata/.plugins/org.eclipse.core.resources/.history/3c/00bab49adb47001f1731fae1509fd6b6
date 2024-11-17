@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/neutrino.h>
+
+#define MAX_INPUT_LENGTH 20
+
+// Function to clear the input buffer
+void clearInputBuffer() {
+	int c;
+	while ((c = getchar()) != '\n' && c != EOF) {
+	}
+
+}
+
+int main() {
+	int person_id = 0;
+	int weight = 0;
+	// Debugging statement for main function entry
+//	printf("[DEBUG] Entering main function from des_inputs.c\n");
+//
+//	// Prompt user to enter the controller PID
+//	printf("[DEBUG] Enter the controller PID:\n");
+	char input[MAX_INPUT_LENGTH];
+//	fgets(input, sizeof(input), stdin);
+////	pid_t controller_pid = atoi(input);
+  input[strcspn(input, "\n")] = '\0';
+//	printf("[DEBUG] Controller PID entered: %d\n", input);
+
+	// Open a connection to the controller using its name
+	    int coid = name_open("controller", 0);
+	    if (coid == -1) {
+	        perror("[DEBUG] name_open");
+	        return EXIT_FAILURE;
+	    }
+
+	while (1) {
+		// Prompt for event type
+		printf(
+				"[DEBUG] Enter the event type (ls=left scan, rs=right scan, ws=weight scale, lo=left open, ro=right open, lc=left closed, rc=right closed, gru=guard right unlock, grl=guard right lock, gll=guard left lock, glu=guard left unlock):\n");
+		fgets(input, sizeof(input), stdin);
+			int idx = strcspn(input, "\n");
+			if (idx == 4) {
+				while (getchar() != '\n')
+					;
+			} else {
+				event->event[idx] = '\0';
+			}
+		printf("[DEBUG] Event type entered: %s\n", input);
+
+		// Store the event type in a temporary variable
+		char event[MAX_INPUT_LENGTH];
+		strcpy(event, input);
+
+		// Process input events
+		if (strcmp(event, "ls") == 0 || strcmp(event, "rs") == 0) {
+			// Prompt for person_id for ls or rs
+			printf(" Enter the person_id:\n");
+			fgets(input, sizeof(input), stdin);
+			input[strcspn(input, "\n")] = '\0'; // Remove newline character if present
+			person_id = atoi(input);  // Convert input to integer
+			printf("Person ID entered: %d\n", person_id);
+		} else if (strcmp(event, "ws") == 0) {
+			// Prompt for weight for ws
+			printf(" Enter the weight:\n");
+			fgets(input, sizeof(input), stdin);
+			input[strcspn(input, "\n")] = '\0'; // Remove newline character if present
+			weight = atoi(input);  // Convert input to integer
+			printf(" Weight entered: %d\n", weight);
+		}
+
+		// Example message structure (replace with actual message format based on your implementation)
+		struct {
+			char event[MAX_INPUT_LENGTH];
+			int person_id;
+			int weight;
+		} message;
+
+		strcpy(message.event, event); // Copy event type from temporary variable
+		message.person_id = person_id;
+		message.weight = weight;
+
+		// Print data before sending to controller
+
+		// Example: Send the message to des_controller
+		if (MsgSend(coid, &message, sizeof(message), NULL, 0) == -1) {
+			perror("MsgSend");
+			return EXIT_FAILURE;
+		}
+		printf(" Message sent successfully\n");
+
+		// Check for exit condition
+		if (strcmp(event, "exit") == 0) {
+			break;
+		}
+
+		// Clear input buffer for the next iteration
+		clearInputBuffer();
+	}
+
+	    // Close the connection to the controller
+	       if (name_close(coid) == -1) {
+	           perror("name_close");
+	           return EXIT_FAILURE;
+	       }
+
+
+	printf("Detached from controller\n");
+
+	printf(" Exiting main function from des_inputs.c\n");
+
+	return EXIT_SUCCESS;
+}
